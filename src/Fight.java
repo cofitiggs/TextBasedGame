@@ -37,14 +37,12 @@ public class Fight {
     }
 
     private static int calcPlayerDamage(int playerDamage) {
-//        Random random = new Random();
-//        return random.nextInt(playerDamage+1);
-        return playerDamage;
+        Random random = new Random();
+        return random.nextInt(playerDamage+1);
     }
 
     private static int calcMonsterDamage(int monsterDamage) {
-//        Random random = new Random();
-//        return random.nextInt(monsterDamage+1);
-        return monsterDamage;
+        Random random = new Random();
+        return random.nextInt(monsterDamage+1);
     }
 }
