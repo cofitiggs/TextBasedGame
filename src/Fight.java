@@ -10,30 +10,35 @@ public class Fight {
     }
 
     public static void fight(Player player, Monster monster) {
-        int playerDamage;
-        int monsterDamage;
-
         System.out.println("You have entered a fight with a monster! Get ready!");
 
         while (player.getHitPoints() > 0 && monster.getHitPoints() > 0) {
-            playerDamage = calcPlayerDamage(player.getDamage());
-            System.out.println("You inflict " + playerDamage + " damage on the monster.");
-            monster.setHitPoints(monster.getHitPoints() - playerDamage);
-            System.out.println("The monster has " + monster.getHitPoints() + " hitpoints remaining.");
+            playerAttack(player, monster);
             if (monster.getHitPoints() <= 0){
                 System.out.println("Congratulations! You have defeated the monster!");
                 break;
             }
 
-            monsterDamage = calcMonsterDamage(monster.getDamage());
-            System.out.println("The monster inflicts " + monsterDamage + " damage on you.");
-            player.setHitPoints(player.getHitPoints() - monsterDamage);
-            System.out.println("You have " + player.getHitPoints() + " hitpoints remaining.");
+            monsterAttack(monster, player);
             if (player.getHitPoints() <= 0){
                 System.out.println("Sorry, but you have been defeated by the monster.");
                 break;
             }
         }
+    }
+
+    private static void playerAttack(Player player, Monster monster) {
+        int playerDamage = calcPlayerDamage(player.getDamage());
+        System.out.println("You inflict " + playerDamage + " damage on the monster.");
+        monster.setHitPoints(monster.getHitPoints() - playerDamage);
+        System.out.println("The monster has " + monster.getHitPoints() + " hitpoints remaining.");
+    }
+
+    private static void monsterAttack(Monster monster, Player player) {
+        int monsterDamage = calcMonsterDamage(monster.getDamage());
+        System.out.println("The monster inflicts " + monsterDamage + " damage on you.");
+        player.setHitPoints(player.getHitPoints() - monsterDamage);
+        System.out.println("You have " + player.getHitPoints() + " hitpoints remaining.");
     }
 
     private static int calcPlayerDamage(int playerDamage) {
