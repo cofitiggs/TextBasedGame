@@ -10,33 +10,26 @@ public class Fight {
     }
 
     public static void fight(Player player, Monster monster) {
+        int playerDamage;
+        int monsterDamage;
+
         System.out.println("You have entered a fight with a monster! Get ready!");
 
-        int playerHP = player.getHitPoints();
-        int playerDamage;
-        int playerHpRemaining = playerHP;
-
-        int monsterHP = monster.getHitPoints();
-        int monsterDamage;
-        int monsterHpRemaining = monsterHP;
-
-        while (playerHpRemaining > 0 && monsterHpRemaining > 0) {
+        while (player.getHitPoints() > 0 && monster.getHitPoints() > 0) {
             playerDamage = calcPlayerDamage(player.getDamage());
             System.out.println("You inflict " + playerDamage + " damage on the monster.");
-            monsterHpRemaining -= playerDamage;
-            monster.setHitPoints(monsterHpRemaining);
+            monster.setHitPoints(monster.getHitPoints() - playerDamage);
             System.out.println("The monster has " + monster.getHitPoints() + " hitpoints remaining.");
-            if (monsterHpRemaining <= 0){
+            if (monster.getHitPoints() <= 0){
                 System.out.println("Congratulations! You have defeated the monster!");
                 break;
             }
 
             monsterDamage = calcMonsterDamage(monster.getDamage());
             System.out.println("The monster inflicts " + monsterDamage + " damage on you.");
-            playerHpRemaining -= monsterDamage;
-            player.setHitPoints(playerHpRemaining);
+            player.setHitPoints(player.getHitPoints() - monsterDamage);
             System.out.println("You have " + player.getHitPoints() + " hitpoints remaining.");
-            if (playerHpRemaining <= 0){
+            if (player.getHitPoints() <= 0){
                 System.out.println("Sorry, but you have been defeated by the monster.");
                 break;
             }
@@ -44,12 +37,14 @@ public class Fight {
     }
 
     private static int calcPlayerDamage(int playerDamage) {
-        Random random = new Random();
-        return random.nextInt(playerDamage+1);
+//        Random random = new Random();
+//        return random.nextInt(playerDamage+1);
+        return playerDamage;
     }
 
     private static int calcMonsterDamage(int monsterDamage) {
-        Random random = new Random();
-        return random.nextInt(monsterDamage+1);
+//        Random random = new Random();
+//        return random.nextInt(monsterDamage+1);
+        return monsterDamage;
     }
 }
